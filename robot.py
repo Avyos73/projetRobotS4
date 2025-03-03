@@ -2,7 +2,7 @@ from gpiozero import PWMOutputDevice
 from gpiozero import DigitalOutputDevice
 from math import sqrt,asin
 
-#import neopixel
+import neopixel
 
 from connectionServ import connectToServ
 
