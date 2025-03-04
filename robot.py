@@ -1,6 +1,7 @@
 from gpiozero import PWMOutputDevice
 from gpiozero import DigitalOutputDevice
 from math import sqrt,asin
+import board
 
 import neopixel
 
@@ -34,7 +35,7 @@ class Robot:
         self.controller1 = DigitalOutputDevice(17)
         self.controlleur2 = DigitalOutputDevice(19)
         self.color = color
-        self.led = Led(21,5)
+        self.led = Led(board.D21,5)
         self.score = 0
 
     def getOnController(self):
