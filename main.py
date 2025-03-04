@@ -1,6 +1,9 @@
 import pygame
 from robot import Robot
 from connectionServ import connectToServ
+from time import sleep
+
+temps2pi = 2
 
 def manual():
     pygame.init()
@@ -9,7 +12,7 @@ def manual():
     if pygame.joystick.get_count() == 0:
         print("Aucune manette détectée.")
         return
-
+    rbt = Robot("blue")
     joystick = pygame.joystick.Joystick(0)
     joystick.init()
 
@@ -18,10 +21,29 @@ def manual():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.JOYAXISMOTION:
-                print(f"Axe {event.axis} déplacé, valeur : {event.value}")
+                x_axis = round(joystick.get_axis(0),1)  # Axe X du stick gauche
+                y_axis = round(joystick.get_axis(1),1)
+                
+        
+        # Vérifier périodiquement les valeurs des axes même sans événement
+        x_axis = round(joystick.get_axis(0),1)  # Axe X du stick gauche
+        y_axis = round(joystick.get_axis(1),1)
+        print(f"x: {x_axis}, y: {y_axis}")
+
+        sleep(1)
+        rbt.goto(x_axis,y_axis,0)
 
 def auto():
-    pass
+    rbt = Robot("blue")
+    rbt.getOnController()
+    angle = rbt.getRobotRad()
+    rbt.goto(0,0,3)
+    sleep(angle*temps2pi/360)
+    rbt.goto(0,0,0)
+
+    while True:
+        obj = rbt.getObjectif()
+        rbt.goto(obj[0],obj[1],0)  
 
 if __name__ == "__main__":
     manual()

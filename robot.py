@@ -15,8 +15,8 @@ class Motor:
         
 class Led:
 
-    def __init__(self,ledpin):
-        self.strip = neopixel.NeoPixel(ledpin, 3, brightness=0.1, auto_write=False)
+    def __init__(self,ledpin,nbrLed):
+        self.strip = neopixel.NeoPixel(ledpin, nbrLed, brightness=0.1, auto_write=False)
 
     def allumerLed(self,numLed, color):
         self.pixels[numLed] = color
@@ -34,7 +34,8 @@ class Robot:
         self.controller1 = DigitalOutputDevice(17)
         self.controlleur2 = DigitalOutputDevice(19)
         self.color = color
-        self.led = Led(21)
+        self.led = Led(21,5)
+        self.score = 0
 
     def getOnController(self):
         self.controller1.value = True
@@ -47,6 +48,13 @@ class Robot:
 
     def getCoor(self):
         self.posX,self.posY = connectToServ("192.168.0.1",12345,f"G{self.color[0].upper()}P")
+    
+    def getScore(self):
+        self.score = connectToServ("192.168.0.1",12345,f"G{self.color[0].upper()}S")
+
+    def getObjectif(self):
+        x, y = connectToServ("192.168.0.1",12345,'GTP')
+        return (x,y)
 
     def getRobotRad(self):
         lstcoord = []

@@ -1,30 +1,34 @@
-from rpi_ws281x import PixelStrip, Color
-import time
+import neopixel
 
-# Paramètres du bandeau de LED
-LED_COUNT = 60        # Nombre de LED dans le bandeau
-LED_PIN = 18          # GPIO pin auquel les LED sont connectées
-LED_FREQ_HZ = 800000 # Fréquence du signal
-LED_DMA = 10          # DMA channel
-LED_BRIGHTNESS = 255  # Luminosité des LED (0-255)
-LED_INVERT = False    # Inverser le signal
+from gpiozero import DigitalOutputDevice, PWMOutputDevice
+from time import sleep
 
-# Initialisation de l'instance du bandeau de LED
-strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA, LED_INVERT, LED_BRIGHTNESS)
-strip.begin()
+class Led:
 
-# Fonction pour allumer toutes les LED en rouge
-def colorWipe(strip, color, wait_ms=50):
-    for i in range(strip.numPixels()):
-        strip.setPixelColor(i, color)  # Définit la couleur
-        strip.show()  # Met à jour les LED
-        time.sleep(wait_ms / 1000.0)
+    def __init__(self,ledpin,nbrLed):
+        self.strip = neopixel.NeoPixel(ledpin, nbrLed, brightness=0.1, auto_write=False)
 
-# Exemple d'utilisation : allumer toutes les LED en rouge
-colorWipe(strip, Color(255, 0, 0))  # Couleur rouge (R, G, B)
+    def allumerLed(self,numLed, color):
+        self.pixels[numLed] = color
+        self.pixels.show()
+    
+    def eteindreLed(self,numLed):
+        self.pixels[numLed] = (0,0,0)
+        
+    def rainbow(self):
+        for i in range(255):
+            self.strip.fill((i,255-i,0))
+            self.strip.show()
+            sleep(0.1)
+        for i in range(255):
+            self.strip.fill((255-i,0,i))
+            self.strip.show()
+            sleep(0.1)
+        for i in range(255):
+            self.strip.fill((0,i,255-i))
+            self.strip.show()
+            sleep(0.1)
+        self.strip.fill((0,0,0))
+        self.strip.show()
 
-# Attendre 2 secondes avant d'éteindre les LED
-time.sleep(2)
-
-# Éteindre toutes les LED
-colorWipe(strip, Color(0, 0, 0))  # Éteindre toutes les LED
+a = Led(21,10)
