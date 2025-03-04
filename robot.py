@@ -11,7 +11,7 @@ class Motor:
     def __init__(self,pin1,pin2,pin3):
         self.forward =  DigitalOutputDevice(pin1)
         self.backward =  DigitalOutputDevice(pin2)
-        self.vel = PWMOutputDevice(pin3, True, 0, 1000)
+        self.vel = PWMOutputDevice(pin3)
         
 class Led:
 
