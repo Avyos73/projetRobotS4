@@ -70,8 +70,10 @@ class Robot:
         lst = [(2/3)*x  + (1/3)*w,
                (-1/3)*x + (-sqrt(3)/3)*y + (1/3)*w,
                (-1/3)*x + (sqrt(3)/3)*y  + (1/3)*w]
-        
-        coef = 1/max(abs(lst[0]),abs(lst[1]),abs(lst[2]))
+        if lst[0] != 0 and lst[1] != 0 and lst[2] != 0:
+            coef = 1/max(abs(lst[0]),abs(lst[1]),abs(lst[2]))
+        else:
+            coef = 1
 
         for i in range(3):
             if lst[i]>0:
