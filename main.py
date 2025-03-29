@@ -47,6 +47,9 @@ def auto():
     while rbt.score < 10:
         obj = rbt.getObjectif()
         rbt.goto(obj[0],obj[1],0)  
-
+def spin():
+    rbt = Robot("blue")
+    rbt.getOnController()
+    rbt.goto(0,0,1)
 if __name__ == "__main__":
-    manual()
+    spin()
