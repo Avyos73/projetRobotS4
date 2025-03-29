@@ -13,6 +13,7 @@ def manual():
         print("Aucune manette détectée.")
         return
     rbt = Robot("blue")
+    rbt.getOnController()
     joystick = pygame.joystick.Joystick(0)
     joystick.init()
 

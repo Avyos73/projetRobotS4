@@ -2,6 +2,7 @@ from gpiozero import PWMOutputDevice
 from gpiozero import DigitalOutputDevice
 from math import sqrt,asin
 import board
+from time import sleep
 
 import neopixel
 
@@ -26,6 +27,22 @@ class Led:
     def eteindreLed(self,numLed):
         self.pixels[numLed] = (0,0,0)
         
+    def rainbow(self):
+        for i in range(255):
+            self.strip.fill((i,255-i,0))
+            self.strip.show()
+            sleep(0.1)
+        for i in range(255):
+            self.strip.fill((255-i,0,i))
+            self.strip.show()
+            sleep(0.1)
+        for i in range(255):
+            self.strip.fill((0,i,255-i))
+            self.strip.show()
+            sleep(0.1)
+        self.strip.fill((0,0,0))
+        self.strip.show()
+
 
 class Robot:
     def __init__(self,color):
