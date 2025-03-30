@@ -13,7 +13,7 @@ class Motor:
     def __init__(self,pin1,pin2,pin3):
         self.forward =  DigitalOutputDevice(pin1)
         self.backward =  DigitalOutputDevice(pin2)
-        self.vel = PWMOutputDevice(pin3)
+        self.vel = PWMOutputDevice(pin3, frequency=1000)
         
 class Led:
 
@@ -93,12 +93,14 @@ class Robot:
             coef = 1
 
         for i in range(3):
-            if lst[i]>0:
+            self.motors[i].forward.value = False
+            self.motors[i].backward.value = False
+            if lst[i] > 0:
                 self.motors[i].forward.value = True
-                self.motors[i].vel.value = abs(lst[i]*coef)
-            elif lst[i]<0:
+                self.motors[i].vel.value = abs(lst[i] * coef)
+            elif lst[i] < 0:
                 self.motors[i].backward.value = True
-                self.motors[i].vel.value = abs(lst[i]*coef)
+                self.motors[i].vel.value = abs(lst[i] * coef)
 
 
     def stop(self):
