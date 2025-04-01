@@ -11,17 +11,17 @@ GPIO.setwarnings(False)  # Désactiver les avertissements GPIO
 pwmFreq = 100  # Fréquence PWM en Hz
 
 # Configuration des broches pour le contrôleur moteur TB6612FNG
-GPIO.setup(18, GPIO.OUT)  # PWMA
-GPIO.setup(23, GPIO.OUT)  # AIN1
-GPIO.setup(24, GPIO.OUT)  # AIN2
-GPIO.setup(25, GPIO.OUT)  # STBY
-GPIO.setup(12, GPIO.OUT)  # PWMB
+GPIO.setup(2, GPIO.OUT)  # PWMA
+GPIO.setup(3, GPIO.OUT)  # AIN1
+GPIO.setup(4, GPIO.OUT)  # AIN2
+GPIO.setup(17, GPIO.OUT)  # STBY
+GPIO.setup(10, GPIO.OUT)  # PWMB
 GPIO.setup(22, GPIO.OUT)  # BIN1
 GPIO.setup(27, GPIO.OUT)  # BIN2
 
 # Initialisation des PWM
-pwma = GPIO.PWM(18, pwmFreq)  # PWMA sur la broche 18
-pwmb = GPIO.PWM(12, pwmFreq)  # PWMB sur la broche 12
+pwma = GPIO.PWM(2, pwmFreq)  # PWMA sur la broche 18
+pwmb = GPIO.PWM(10, pwmFreq)  # PWMB sur la broche 12
 pwma.start(100)  # Démarrer avec un rapport cyclique de 100%
 pwmb.start(100)  # Démarrer avec un rapport cyclique de 100%
 
