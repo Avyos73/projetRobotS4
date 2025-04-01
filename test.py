@@ -44,12 +44,12 @@ def turnRight(spd):
 
 def runMotor(motor, spd, direction):
     # Activer le mode STBY
-    GPIO.output(25, GPIO.HIGH)  # STBY activé
+    GPIO.output(17, GPIO.HIGH)  # STBY activé
 
     # Configuration des broches pour le moteur
     if motor == 0:  # Moteur A
-        in1 = 23
-        in2 = 24
+        in1 = 3
+        in2 = 4
         pwm = pwma
     elif motor == 1:  # Moteur B
         in1 = 22
