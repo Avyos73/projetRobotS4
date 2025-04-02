@@ -68,18 +68,19 @@ def runMotor(motor, spd, direction):
     pwm.ChangeDutyCycle(spd)
 
 # Exemple d'utilisation
-if __name__ == "__main__":
-    try:
-        forward(50)  # Avancer à 50% de la vitesse
-        sleep(2)  # Attendre 2 secondes
-        reverse(50)  # Reculer à 50% de la vitesse
-        sleep(2)  # Attendre 2 secondes
-        turnLeft(50)  # Tourner à gauche
-        sleep(2)  # Attendre 2 secondes
-        turnRight(50)  # Tourner à droite
-        sleep(2)  # Attendre 2 secondes
-    finally:
-        # Nettoyer les GPIO à la fin
-        pwma.stop()
-        pwmb.stop()
-        GPIO.cleanup()
+
+forward(50)  # Avancer à 50% de la vitesse
+print("Avancer à 50 e la vitesse")
+sleep(2)  # Attendre 2 secondes
+reverse(50)  # Reculer à 50% de la vitesse
+sleep(2)  # Attendre 2 secondes
+turnLeft(50)  # Tourner à gauche
+print("Tourner à gauche")
+sleep(2)  # Attendre 2 secondes
+turnRight(50)  # Tourner à droite
+sleep(2)  # Attendre 2 secondes
+
+# Nettoyer les GPIO à la fin
+pwma.stop()
+pwmb.stop()
+GPIO.cleanup()
