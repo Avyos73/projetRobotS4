@@ -18,7 +18,7 @@ GPIO.setup(17, GPIO.OUT)  # STBY
 GPIO.setup(10, GPIO.OUT)  # PWMB
 GPIO.setup(22, GPIO.OUT)  # BIN1
 GPIO.setup(27, GPIO.OUT)  # BIN2
-
+GPIO.setup(27, GPIO.OUT)  # BIN2
 # Initialisation des PWM
 pwma = GPIO.PWM(2, pwmFreq)  # PWMA sur la broche 18
 pwmb = GPIO.PWM(10, pwmFreq)  # PWMB sur la broche 12
