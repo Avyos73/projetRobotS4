@@ -51,5 +51,6 @@ def spin():
     rbt = Robot("blue")
     rbt.getOnController()
     rbt.goto(0,0,1)
+    sleep(2)
 if __name__ == "__main__":
     spin()

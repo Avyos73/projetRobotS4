@@ -19,11 +19,18 @@ GPIO.setup(10, GPIO.OUT)  # PWMB
 GPIO.setup(22, GPIO.OUT)  # BIN1
 GPIO.setup(27, GPIO.OUT)  # BIN2
 
+GPIO.setup(19, GPIO.OUT)  # STBY
+GPIO.setup(5, GPIO.OUT)  # PWMB
+GPIO.setup(13, GPIO.OUT)  # BIN1
+GPIO.setup(6, GPIO.OUT)  # BIN2
+
 # Initialisation des PWM
 pwma = GPIO.PWM(2, pwmFreq)  # PWMA sur la broche 18
 pwmb = GPIO.PWM(10, pwmFreq)  # PWMB sur la broche 12
+pwmc = GPIO.PWM(5, pwmFreq)  # PWMB sur la broche 12
 pwma.start(100)  # Démarrer avec un rapport cyclique de 100%
-pwmb.start(100)  # Démarrer avec un rapport cyclique de 100%
+pwmb.start(100)
+pwmc.start(100)   # Démarrer avec un rapport cyclique de 100%
 
 # Fonctions pour contrôler les moteurs
 def forward(spd):
@@ -33,6 +40,7 @@ def forward(spd):
 def reverse(spd):
     runMotor(0, spd, 1)
     runMotor(1, spd, 1)
+    runMotor(2,spd,1)
 
 def turnLeft(spd):
     runMotor(0, spd, 0)
@@ -55,6 +63,10 @@ def runMotor(motor, spd, direction):
         in1 = 22
         in2 = 27
         pwm = pwmb
+    else:
+        in1 = 13
+        in2 = 6
+        pwm = pwmc
 
     # Définir la direction
     if direction == 1:  # Marche arrière
@@ -71,9 +83,9 @@ def runMotor(motor, spd, direction):
 
 forward(50)  # Avancer à 50% de la vitesse
 print("Avancer à 50 e la vitesse")
-sleep(2)  # Attendre 2 secondes
+sleep(10)  # Attendre 2 secondes
 reverse(50)  # Reculer à 50% de la vitesse
-sleep(2)  # Attendre 2 secondes
+sleep(10)  # Attendre 2 secondes
 turnLeft(50)  # Tourner à gauche
 print("Tourner à gauche")
 sleep(2)  # Attendre 2 secondes
@@ -83,4 +95,5 @@ sleep(2)  # Attendre 2 secondes
 # Nettoyer les GPIO à la fin
 pwma.stop()
 pwmb.stop()
+pwmc.stop()
 GPIO.cleanup()
