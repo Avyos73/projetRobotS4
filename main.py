@@ -62,4 +62,4 @@ def square():
     sleep(1)
     
 if __name__ == "__main__":
-    spin()
+    square()
