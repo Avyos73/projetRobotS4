@@ -48,7 +48,7 @@ class Robot:
     def __init__(self,color):
         self.posX = 0
         self.posY = 0
-        self.motors = [Motor(4,3,2),Motor(27,22,10),Motor(6,13,5)]
+        self.motors = [Motor(4,3,2),Motor(27,22,10),Motor(13,6,5)]
         self.controller1 = DigitalOutputDevice(17)
         self.controlleur2 = DigitalOutputDevice(19)
         self.color = color
