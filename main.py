@@ -55,13 +55,22 @@ def square():
     rbt = Robot("blue")
     rbt.getOnController()
     rbt.goto(1,0,0)
-    sleep(1)
+    
+    sleep(1.5)
+    rbt.goto(0,0,0)
+    sleep(0.5)
     rbt.goto(0,1,0)
-    sleep(1)
+    sleep(1.5)
+    rbt.goto(0,0,0)
+    sleep(0.5)
     rbt.goto(-1,0,0)
-    sleep(1)
+    sleep(1.5)
+    rbt.goto(0,0,0)
+    sleep(0.5)
     rbt.goto(0,-1,0)
-    sleep(1)
+    sleep(1.5)
+    rbt.goto(0,0,0)
+    sleep(0.5)
 
 def spin():
     rbt = Robot("blue")
@@ -72,5 +81,5 @@ def spin():
     
 if __name__ == "__main__":
   
-    spin()
-    square()
+    for i in range(15):
+        square()
