@@ -73,3 +73,4 @@ def spin():
 if __name__ == "__main__":
   
     spin()
+    square()
