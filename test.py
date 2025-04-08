@@ -36,6 +36,7 @@ pwmc.start(100)   # Démarrer avec un rapport cyclique de 100%
 def forward(spd):
     runMotor(0, spd, 0)
     runMotor(1, spd, 0)
+    runMotor(2,spd,0)
 
 def reverse(spd):
     runMotor(0, spd, 1)
@@ -45,6 +46,7 @@ def reverse(spd):
 def turnLeft(spd):
     runMotor(0, spd, 0)
     runMotor(1, spd, 1)
+
 
 def turnRight(spd):
     runMotor(0, spd, 1)
