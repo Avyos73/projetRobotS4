@@ -1,101 +1,23 @@
 
-# Importation des bibliothèques nécessaires
-from time import sleep  # Pour les délais
-import RPi.GPIO as GPIO  # Pour contrôler les broches GPIO
+import pygame
+from robot import Robot
+from connectionServ import connectToServ
+from time import sleep
 
-# Configuration des broches GPIO
-GPIO.setmode(GPIO.BCM)  # Mode BCM pour les numéros de broches
-GPIO.setwarnings(False)  # Désactiver les avertissements GPIO
+def square():
+    rbt = Robot("blue")
+    rbt.getOnController()
+    rbt.goto(1,0,0)
+    sleep(1)
+    rbt.goto(0,1,0)
+    sleep(1)
+    rbt.goto(-1,0,0)
+    sleep(1)
+    rbt.goto(0,-1,0)
+    sleep(1)
 
-# Fréquence PWM
-pwmFreq = 100  # Fréquence PWM en Hz
-
-# Configuration des broches pour le contrôleur moteur TB6612FNG
-GPIO.setup(2, GPIO.OUT)  # PWMA
-GPIO.setup(3, GPIO.OUT)  # AIN1
-GPIO.setup(4, GPIO.OUT)  # AIN2
-GPIO.setup(17, GPIO.OUT)  # STBY
-GPIO.setup(10, GPIO.OUT)  # PWMB
-GPIO.setup(22, GPIO.OUT)  # BIN1
-GPIO.setup(27, GPIO.OUT)  # BIN2
-
-GPIO.setup(19, GPIO.OUT)  # STBY
-GPIO.setup(5, GPIO.OUT)  # PWMB
-GPIO.setup(13, GPIO.OUT)  # BIN1
-GPIO.setup(6, GPIO.OUT)  # BIN2
-
-# Initialisation des PWM
-pwma = GPIO.PWM(2, pwmFreq)  # PWMA sur la broche 18
-pwmb = GPIO.PWM(10, pwmFreq)  # PWMB sur la broche 12
-pwmc = GPIO.PWM(5, pwmFreq)  # PWMB sur la broche 12
-pwma.start(100)  # Démarrer avec un rapport cyclique de 100%
-pwmb.start(100)
-pwmc.start(100)   # Démarrer avec un rapport cyclique de 100%
-
-# Fonctions pour contrôler les moteurs
-def forward(spd):
-    runMotor(0, spd, 0)
-    runMotor(1, spd, 0)
-    runMotor(2,spd,0)
-
-def reverse(spd):
-    runMotor(0, spd, 1)
-    runMotor(1, spd, 1)
-    runMotor(2,spd,1)
-
-def turnLeft(spd):
-    runMotor(0, spd, 0)
-    runMotor(1, spd, 1)
-
-
-def turnRight(spd):
-    runMotor(0, spd, 1)
-    runMotor(1, spd, 0)
-
-def runMotor(motor, spd, direction):
-    # Activer le mode STBY
-    GPIO.output(17, GPIO.HIGH)  # STBY activé
-
-    # Configuration des broches pour le moteur
-    if motor == 0:  # Moteur A
-        in1 = 3
-        in2 = 4
-        pwm = pwma
-    elif motor == 1:  # Moteur B
-        in1 = 22
-        in2 = 27
-        pwm = pwmb
-    else:
-        in1 = 13
-        in2 = 6
-        pwm = pwmc
-
-    # Définir la direction
-    if direction == 1:  # Marche arrière
-        GPIO.output(in1, GPIO.LOW)
-        GPIO.output(in2, GPIO.HIGH)
-    elif direction == 0:  # Marche avant
-        GPIO.output(in1, GPIO.HIGH)
-        GPIO.output(in2, GPIO.LOW)
-
-    # Définir la vitesse
-    pwm.ChangeDutyCycle(spd)
-
-# Exemple d'utilisation
-
-forward(50)  # Avancer à 50% de la vitesse
-print("Avancer à 50 e la vitesse")
-sleep(10)  # Attendre 2 secondes
-reverse(50)  # Reculer à 50% de la vitesse
-sleep(10)  # Attendre 2 secondes
-turnLeft(50)  # Tourner à gauche
-print("Tourner à gauche")
-sleep(2)  # Attendre 2 secondes
-turnRight(50)  # Tourner à droite
-sleep(2)  # Attendre 2 secondes
-
-# Nettoyer les GPIO à la fin
-pwma.stop()
-pwmb.stop()
-pwmc.stop()
-GPIO.cleanup()
+def spin():
+    rbt = Robot("blue")
+    rbt.getOnController()
+    rbt.goto(0,0,1)
+    sleep(10)
