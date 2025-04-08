@@ -36,6 +36,8 @@ def manual():
         sleep(1)
         rbt.goto(x_axis,y_axis,0)
 
+
+
 def auto():
     rbt = Robot("blue")
     rbt.getOnController()
@@ -60,6 +62,14 @@ def square():
     sleep(1)
     rbt.goto(0,-1,0)
     sleep(1)
+
+def spin():
+    rbt = Robot("blue")
+    rbt.getOnController()
+    rbt.goto(0,0,1)
+    sleep(10)
+
     
 if __name__ == "__main__":
-    square()
+  
+    spin()
