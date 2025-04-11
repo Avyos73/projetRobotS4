@@ -2,6 +2,7 @@ import pygame
 from robot import Robot
 from connectionServ import connectToServ
 from time import sleep
+import math
 
 temps2pi = 2
 
@@ -36,8 +37,6 @@ def manual():
         sleep(1)
         rbt.goto(x_axis,y_axis,0)
 
-
-
 def auto():
     rbt = Robot("blue")
     rbt.getOnController()
@@ -50,36 +49,22 @@ def auto():
         obj = rbt.getObjectif()
         rbt.goto(obj[0],obj[1],0)  
 
+def circle(r,cx,cy,nbpoint):
+    angle=360/nbpoint
+    liste_point=[]
+    x=cx + r*math.cos(angle) #cx centre x
+    y=cy + r*math.sin(angle) #cy centre y
+    liste_point.append((x,y))
 
-def square():
-    rbt = Robot("blue")
-    rbt.getOnController()
-    rbt.goto(1,0,0)
-    
-    sleep(1.5)
-    rbt.goto(0,0,0)
-    sleep(0.5)
-    rbt.goto(0,1,0)
-    sleep(1.5)
-    rbt.goto(0,0,0)
-    sleep(0.5)
-    rbt.goto(-1,0,0)
-    sleep(1.5)
-    rbt.goto(0,0,0)
-    sleep(0.5)
-    rbt.goto(0,-1,0)
-    sleep(1.5)
-    rbt.goto(0,0,0)
-    sleep(0.5)
+def dessiner_cercle(rbt,liste_point):
+    for co in liste_point:
+        rbt.goto(co[0],co[1])
+        sleep(0.5)
 
 def spin():
     rbt = Robot("blue")
     rbt.getOnController()
     rbt.goto(0,0,1)
-    sleep(10)
-
-    
+    sleep(2)
 if __name__ == "__main__":
-  
-    for i in range(15):
-        square()
+    spin()
