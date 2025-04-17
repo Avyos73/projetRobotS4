@@ -82,4 +82,4 @@ def spin():
     
 if __name__ == "__main__":
   
-    auto()
+    manual()
