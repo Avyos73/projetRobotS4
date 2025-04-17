@@ -24,7 +24,7 @@ def manual():
             if event.type == pygame.JOYAXISMOTION:
                 x_axis = round(joystick.get_axis(0),1)-0.1  # Axe X du stick gauche
                 y_axis = round(joystick.get_axis(1),1)
-                rot = round(joystick.get_axis(3),1)  # Axe Z du stick droit
+                  # Axe Z du stick droit
             
             if event.type==pygame.JOYBUTTONDOWN:
                 return
@@ -32,11 +32,11 @@ def manual():
         # Vérifier périodiquement les valeurs des axes même sans événement
         x_axis = round(joystick.get_axis(0),1)-0.1  # Axe X du stick gauche
         y_axis = round(joystick.get_axis(1),1)
-        rot = round(joystick.get_axis(3),1)
-        print(f"x: {x_axis}, y: {y_axis} rot: {rot}")
+
+        print(f"x: {x_axis}, y: {y_axis}")
 
         sleep(0.1)
-        rbt.goto(x_axis,y_axis,rot)
+        rbt.goto(x_axis,y_axis)
 
 
 
