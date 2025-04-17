@@ -52,7 +52,7 @@ class Robot:
         self.controller1 = DigitalOutputDevice(17)
         self.controlleur2 = DigitalOutputDevice(19)
         self.color = color
-        self.led = Led(board.D21,5)
+        self.led = Led(board.D14,33)
         self.score = 0
 
     def getOnController(self):

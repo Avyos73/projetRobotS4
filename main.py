@@ -48,7 +48,8 @@ def auto():
 
     while rbt.score < 10:
         obj = rbt.getObjectif()
-        rbt.goto(obj[0],obj[1],0)  
+        rbt.goto(obj[0],obj[1],0)
+        sleep(1)
 
 
 def square():
@@ -81,5 +82,4 @@ def spin():
     
 if __name__ == "__main__":
   
-    for i in range(15):
-        square()
+    auto()
