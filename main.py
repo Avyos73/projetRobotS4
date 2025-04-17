@@ -22,18 +22,18 @@ def manual():
     while True:
         for event in pygame.event.get():
             if event.type == pygame.JOYAXISMOTION:
-                x_axis = round(joystick.get_axis(0),1)  # Axe X du stick gauche
+                x_axis = round(joystick.get_axis(0),1)-0.1  # Axe X du stick gauche
                 y_axis = round(joystick.get_axis(1),1)
             
             if event.type==pygame.JOYBUTTONDOWN:
                 return
         
         # Vérifier périodiquement les valeurs des axes même sans événement
-        x_axis = round(joystick.get_axis(0),1)  # Axe X du stick gauche
+        x_axis = round(joystick.get_axis(0),1)-0.1  # Axe X du stick gauche
         y_axis = round(joystick.get_axis(1),1)
         print(f"x: {x_axis}, y: {y_axis}")
 
-        sleep(1)
+        sleep(0.4)
         rbt.goto(x_axis,y_axis,0)
 
 
