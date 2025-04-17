@@ -3,6 +3,7 @@ import pygame
 from robot import Robot, Led
 from connectionServ import connectToServ
 from time import sleep
+import board
 
 def square():
     rbt = Robot("blue")
@@ -22,5 +23,5 @@ def spin():
     rbt.goto(0,0,1)
     sleep(10)
 
-l = Led(14,33)
+l = Led(board.D14,33)
 l.rainbow()
