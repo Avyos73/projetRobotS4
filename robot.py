@@ -97,10 +97,10 @@ class Robot:
             self.motors[i].backward.value = False
             if lst[i] > 0:
                 self.motors[i].forward.value = True
-                self.motors[i].vel.value = abs(lst[i] * coef*0.25)
+                self.motors[i].vel.value = abs(lst[i] * coef*0.75)
             elif lst[i] < 0:
                 self.motors[i].backward.value = True
-                self.motors[i].vel.value = abs(lst[i] * coef*0.25)
+                self.motors[i].vel.value = abs(lst[i] * coef*0.75)
 
 
     def stop(self):
