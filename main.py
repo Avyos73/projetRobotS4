@@ -36,7 +36,7 @@ def manual():
         print(f"x: {x_axis}, y: {y_axis}")
 
         sleep(0.1)
-        rbt.goto(x_axis,y_axis)
+        rbt.goto(x_axis,y_axis,0)
 
 
 
